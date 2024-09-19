@@ -49,10 +49,10 @@ def transcribe():
         original_filename, filename = file_queue.pop(0)
         file_listbox.delete(0)
         transcribe_file(original_filename, filename)
-        console.delete('1.0', tk.END)  # Clear the console after each file
+        console.delete('1.0', tk.END)  
         console.insert(tk.END, f'Done processing')
 
-    # After processing all files, delete the temporary directory
+
     shutil.rmtree(temp_directory)
 
 
