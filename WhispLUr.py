@@ -44,8 +44,8 @@ def clear_choices():
     translate_var.set(False)
     file_queue.clear()
     file_listbox.delete(0, tk.END)
-    duration_label.config(text="")  # Clear the duration label
-    console.delete(0, tk.END)  # Clear the console
+    duration_label.config(text="") 
+    console.delete(0, tk.END)
 
 
 def browse_output_folder():
@@ -76,7 +76,7 @@ def transcribe():
 
         console.delete(running_indices.pop(0))
         console.insert(tk.END, f"Done {original_filename} - Time taken: {duration:.2f} minutes\n")
-        root.update_idletasks()  # Ensure the console updates immediately
+        root.update_idletasks() 
 
     end_time_total = time.time()
     total_duration = (end_time_total - start_time_total) / 60
@@ -101,13 +101,13 @@ def transcribe_file(original_filename, input_file):
 
     for filename in os.listdir(output_folder_path):
         file_extension = os.path.splitext(filename)[1]
-        new_filename = original_filename.replace('.mp3', '').replace('.mp4', '').replace('.aiff', '').replace('.wav', '').replace(" ", "-") + file_extension  # Replace space with hyphen
+        new_filename = original_filename.replace('.mp3', '').replace('.mp4', '').replace('.aiff', '').replace('.wav', '').replace(" ", "-") + file_extension 
         source = os.path.join(output_folder_path, filename)
         destination = os.path.join(output_folder_path, new_filename)
         if source != destination:
             counter = 1
             while os.path.exists(destination):
-                new_filename = original_filename.replace('.mp3', '').replace('.mp4', '').replace('.aiff', '').replace('.wav', '').replace(" ", "-") + f'_{counter}{file_extension}'  # Replace space with hyphen
+                new_filename = original_filename.replace('.mp3', '').replace('.mp4', '').replace('.aiff', '').replace('.wav', '').replace(" ", "-") + f'_{counter}{file_extension}'  
                 destination = os.path.join(output_folder_path, new_filename)
                 counter += 1
             os.rename(source, destination)
@@ -127,16 +127,16 @@ def on_language_select(event):
 
 
 def on_language_typing(event):
-    # Preserve the current cursor position
+
     cursor_position = language_combobox.index(tk.INSERT)
 
     filter_language_options(language_combobox.get())
 
-    # Reopen the dropdown menu
+
     if language_combobox.get():
         language_combobox.event_generate('<Down>')
 
-    # Restore the cursor position
+
     language_combobox.icursor(cursor_position)
 
 
@@ -205,7 +205,7 @@ transcribe_button.pack(pady=5)
 clear_button = tk.Button(root, text="Clear", command=clear_choices)
 clear_button.pack(pady=5)
 
-duration_label = tk.Label(root, text="", wraplength=400)  # Add a label for the duration
+duration_label = tk.Label(root, text="", wraplength=400) 
 duration_label.pack(pady=10)
 
 root.mainloop()
